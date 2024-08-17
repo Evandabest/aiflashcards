@@ -51,6 +51,8 @@ const Add = () => {
     const generate = async (event: React.MouseEvent<HTMLButtonElement>) => {
         //call api
         event.preventDefault()
+
+        //gotoflashcards
     }
     
     return (
