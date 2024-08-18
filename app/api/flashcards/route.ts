@@ -22,7 +22,7 @@ export default async function POST (req : Request) {
         prompt +=  `Make 20 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>}`
     }
     else if (datas.role == "tier-3" && datas.setLimit > 0) {
-        prompt +=  `Make 10 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>}`
+        prompt +=  `Make 30 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>}`
     }
 
     const result = await model.generateContent(prompt);
