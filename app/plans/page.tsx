@@ -17,6 +17,16 @@ const Plans = () => {
         redirect("/plans/studyholic")
     }
 
+    const api = async () => {
+        const response = await fetch("/api/plans",
+        {
+            method: "POST",
+            body: JSON.stringify({plan: "learner"})
+        }
+        );
+
+    }
+
     return (
         <>
             <p>Check out our affordable plans</p>
