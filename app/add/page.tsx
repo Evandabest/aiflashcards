@@ -19,6 +19,8 @@ import { useState, useEffect } from "react"
 const Add = () => {
     const supabase = createClient()
     const [data, setData] = useState<any>()
+    const [title, setTitle] = useState('');
+    const [notes, setNotes] = useState('');
     const router = useRouter()
     useEffect(() => {
         const getData = async () => {
@@ -51,17 +53,38 @@ const Add = () => {
     const generate = async (event: React.MouseEvent<HTMLButtonElement>) => {
         //call api
         event.preventDefault()
+        const data = notes
+        const res = await fetch('/api/flashcards', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({notes: data, datas: data[0], title})
+        })
+
+        console.log(res)
 
         //gotoflashcards
+        //router.push('/flashcards/')
+
+    }
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target
+        if (name === "title") {
+            setTitle(value)
+        } else if (name === "notes") {
+            setNotes(value)
+        }
     }
     
     return (
         <>
             <form>
                 <p>Paste your notes</p>
-                <input type="text" name="title" placeholder="Title" />
-                <input type="textarea" name="notes" placeholder="Notes" />
-                {data && data.plan == "free" && data.free_cards == true ? ( 
+                <input type="text" value={title} onChange={handleChange} name="title" placeholder="Title" />
+                <input type="textarea" value={notes} onChange={handleChange} name="notes" placeholder="Notes" />
+                {data && data[0].plan == "free" && data[0].free_cards == 1 ? ( 
                 <button onClick={generate} type="submit">Generate Cards</button>
                 ) : (
                     <>

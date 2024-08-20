@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2022-11-15',
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-06-20',
 })
 
 export async function POST(req: Request) {
   try {
-    const params = {
+    const params : Stripe.Checkout.SessionCreateParams = {
         mode: 'subscription',
         payment_method_types: ['card'],
         line_items: [
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-    const searchParams = req.nextUrl.searchParams
+    const {searchParams} : {searchParams: any}  = await req.json()
     const session_id = searchParams.get('session_id')
   
     try {
@@ -61,6 +61,6 @@ export async function GET(req: Request) {
       return NextResponse.json(checkoutSession)
     } catch (error) {
       console.error('Error retrieving checkout session:', error)
-      return NextResponse.json({ error: { message: error.message } }, { status: 500 })
+      return NextResponse.json({ error: { message: error } }, { status: 500 })
     }
   }

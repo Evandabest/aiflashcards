@@ -12,16 +12,16 @@ export default async function POST (req : Request) {
     let prompt = ""
 
     if (datas.role == "free" && datas.setLimit > 0) {
-        prompt +=  `Make 10 multiple choice questions based on the following flashcards, ${cards} return each of the flashcards in the following format: { question: <question>, choices: [<choice1>, <choice2>, <choice3>, <choice4>], answer: <answer>}`
+        prompt +=  `Make 10 multiple choice questions based on the following flashcards, ${cards} return each of the flashcards in the following format: { question: <question>, choices: [<choice1>, <choice2>, <choice3>, <choice4>], answer: <answer>} in an array`
     }
     else if (datas.role == "tier-1" && datas.setLimit > 0) {
-        prompt +=  `Make 15 multiple choice questions based on the following flashcards, ${cards} return each of the flashcards in the following format: { question: <question>, choices: [<choice1>, <choice2>, <choice3>, <choice4>], answer: <answer>}`
+        prompt +=  `Make 15 multiple choice questions based on the following flashcards, ${cards} return each of the flashcards in the following format: { question: <question>, choices: [<choice1>, <choice2>, <choice3>, <choice4>], answer: <answer>} in an array`
     }
     else if (datas.role == "tier-2" && datas.setLimit > 0) {
-        prompt +=  `Make 20 multiple choice questions based on the following flashcards, ${cards} return each of the flashcards in the following format: { question: <question>, choices: [<choice1>, <choice2>, <choice3>, <choice4>], answer: <answer>}`
+        prompt +=  `Make 20 multiple choice questions based on the following flashcards, ${cards} return each of the flashcards in the following format: { question: <question>, choices: [<choice1>, <choice2>, <choice3>, <choice4>], answer: <answer>} in an array`
     }
     else if (datas.role == "tier-3" && datas.setLimit > 0) {
-        prompt +=  `Make 30 multiple choice questions based on the following flashcards, ${cards} return each of the flashcards in the following format: { question: <question>, choices: [<choice1>, <choice2>, <choice3>, <choice4>], answer: <answer>}`
+        prompt +=  `Make 30 multiple choice questions based on the following flashcards, ${cards} return each of the flashcards in the following format: { question: <question>, choices: [<choice1>, <choice2>, <choice3>, <choice4>], answer: <answer>} in an array`
     }
     const result = await model.generateContent(prompt);
     const response = await result.response;
@@ -32,6 +32,6 @@ export default async function POST (req : Request) {
     if (error) {
         return NextResponse.json({Error: "something went wrong"})
     }
-    
+
     return NextResponse.json({ message: "Hello, World!" })
 }

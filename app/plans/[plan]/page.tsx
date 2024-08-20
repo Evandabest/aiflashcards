@@ -1,6 +1,9 @@
 import { createClient } from "@/utils/supabase/server";
 
+
 const Plan = ({plan}:{plan: any}) => {
+    console.log(plan)
+    
 
     const buyLeaner = async () => {
         //api call to stripe
