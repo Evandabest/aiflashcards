@@ -44,7 +44,7 @@ const Home = () => {
                     flashcards.map((flashcard) => {
                         return (
                             <div key={flashcard.id}>
-                                <h2>{flashcard.title}</h2>
+                                <h2>{flashcard.name}</h2>
                                 <button>View</button>
                             </div>
                         );
