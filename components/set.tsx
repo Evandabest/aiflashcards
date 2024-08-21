@@ -16,6 +16,7 @@ const Sets = ({data}: {data: any}) => {
 
     const prev = () => {
         if (index === 0) {
+            
             return
         }
         setIndex(index - 1)
@@ -26,7 +27,7 @@ const Sets = ({data}: {data: any}) => {
         <>
             <div>
                 <button onClick={prev}>Back</button>
-                <Card front={data[index].front} back={data[index].back} flip={() => setFlip(!flip)} />
+                <Card front={data[index].front} back={data[index].back} flip={flip} setFlip = {setFlip} />
                 <button onClick={next}>Next</button>
             </div>
         </>

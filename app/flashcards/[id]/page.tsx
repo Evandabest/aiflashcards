@@ -2,19 +2,20 @@
 import { createClient } from "@/utils/supabase/server"
 import Sets from "@/components/set"
 
-const FlashcardsPage = async ({ id } : {id: string}) => {
+const FlashcardsPage = async ({ params: {id} } : {params: {id: string}}) => {
     const supabase = createClient()
     const { data, error } = await supabase.from('flashcards').select('*').eq('id', id).single()
     if (error) {
         console.error('Error fetching flashcards:', error)
         return
     }
-    console.log(data)
+
     return (
         <>
             <div>
-                <h1>{data.title}</h1>
-                <Sets data = {data}></Sets>
+                <h1>{data.name}</h1>
+                {<Sets data = {data.cards}></Sets>
+                }
                 
             </div>
         </>

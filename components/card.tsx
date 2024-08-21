@@ -1,14 +1,13 @@
 "use client"
 import { useState } from "react"
 
-const Card = ({front, back, flip}: {front: string, back: string, flip: Function}) => {
-    const [flipped, setFlipped] = useState(false)
+const Card = ({front, back, flip, setFlip}: {front: string, back: string, flip: boolean, setFlip: Function}) => {
     
     return (
-        <div className="card" onClick={() => {flip(); setFlipped(true)}}>
-            {flipped ? 
-            <p>{front}</p> : 
-            <p>{back}</p>
+        <div className="card" onClick={() => {setFlip(!flip);}}>
+            {flip ? 
+            <p>{back}</p> : 
+            <p>{front}</p>
             }
         </div>
     )

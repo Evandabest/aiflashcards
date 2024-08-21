@@ -53,19 +53,25 @@ const Add = () => {
     const generate = async (event: React.MouseEvent<HTMLButtonElement>) => {
         //call api
         event.preventDefault()
-        const data = notes
+        const datas = notes
         const res = await fetch('/api/flashcards', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({notes: data, datas: data[0], title})
+            body: JSON.stringify({notes: datas, datas: data[0], title})
         })
 
-        console.log(res)
-
-        //gotoflashcards
-        //router.push('/flashcards/')
+        if (res.ok) {
+            const jsonResponse = await res.json();
+            const generatedId = jsonResponse.id;
+            console.log("Generated ID:", generatedId);
+    
+            // Go to flashcards
+            router.push(`/flashcards/${generatedId}`);
+        } else {
+            console.error("Failed to generate flashcards:", res.statusText);
+        }
 
     }
 
