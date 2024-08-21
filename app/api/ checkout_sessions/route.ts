@@ -1,66 +1,45 @@
-import { NextResponse } from 'next/server'
-import Stripe from 'stripe'
+import Stripe from "stripe";
+import { NextResponse, NextRequest } from "next/server";
+import { createClient } from "@/utils/supabase/server";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-06-20',
-})
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+export async function POST(req: NextRequest) {
+  const payload = await req.text();
+  const res = JSON.parse(payload);
 
-export async function POST(req: Request) {
+  const sig = req.headers.get("Stripe-Signature");
+
+  const dateTime = new Date(res?.created * 1000).toLocaleDateString();
+  const timeString = new Date(res?.created * 1000).toLocaleDateString();
+
   try {
-    const params : Stripe.Checkout.SessionCreateParams = {
-        mode: 'subscription',
-        payment_method_types: ['card'],
-        line_items: [
-          {
-            price_data: {
-              currency: 'usd',
-              product_data: {
-                name: 'Pro subscription',
-              },
-              unit_amount: 1000, // $10.00 in cents
-              recurring: {
-                interval: 'month',
-                interval_count: 1,
-              },
-            },
-            quantity: 1,
-          },
-        ],
-        success_url: `${req.headers.get(
-          'Referer',
-        )}result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.get(
-          'Referer',
-        )}result?session_id={CHECKOUT_SESSION_ID}`,
-      }
-      
-      const checkoutSession = await stripe.checkout.sessions.create(params)
-      
-      return NextResponse.json(checkoutSession, {
-        status: 200,
-      })
+    let event = stripe.webhooks.constructEvent(
+      payload,
+      sig!,
+      process.env.STRIPE_WEBHOOK_SECRET!
+    );
+
+    console.log("Event", event?.type);
+    // charge.succeeded
+    // payment_intent.succeeded
+    // payment_intent.created
+
+    console.log(
+      res?.data?.object?.billing_details?.email, // email
+      res?.data?.object?.amount, // amount
+      JSON.stringify(res), // payment info
+      res?.type, // type
+      String(timeString), // time
+      String(dateTime), // date
+      res?.data?.object?.receipt_email, // email
+      res?.data?.object?.receipt_url, // url
+      JSON.stringify(res?.data?.object?.payment_method_details), // Payment method details
+      JSON.stringify(res?.data?.object?.billing_details), // Billing details
+      res?.data?.object?.currency // Currency
+    );
+
+    return NextResponse.json({ status: "sucess", event: event.type, response: res });
   } catch (error) {
-    console.error('Error creating checkout session:', error)
-    return new NextResponse(JSON.stringify({ error: { message: error } }), {
-      status: 500,
-    })
+    return NextResponse.json({ status: "Failed", error });
   }
 }
-
-export async function GET(req: Request) {
-    const {searchParams} : {searchParams: any}  = await req.json()
-    const session_id = searchParams.get('session_id')
-  
-    try {
-      if (!session_id) {
-        throw new Error('Session ID is required')
-      }
-  
-      const checkoutSession = await stripe.checkout.sessions.retrieve(session_id)
-  
-      return NextResponse.json(checkoutSession)
-    } catch (error) {
-      console.error('Error retrieving checkout session:', error)
-      return NextResponse.json({ error: { message: error } }, { status: 500 })
-    }
-  }
