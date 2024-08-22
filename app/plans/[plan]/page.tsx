@@ -1,69 +1,86 @@
 "use client"
 import { createClient } from "@/utils/supabase/server";
+import { useRouter } from "next/navigation";
 
-const Plan = ({ params: { plan } }: { params: { plan: any } }) => {
-    console.log(plan);
+interface PlanDetails {
+  title: string;
+  features: string[];
+  buyFunction: () => void;
+}
 
-    const buyLeaner = async () => {
-        // API call to Stripe
-    };
+const Plan = ({ params: { plan } }: { params: { plan: string } }) => {
+  const router = useRouter();
 
-    const buyStudent = async () => {
-        // API call to Stripe
-    };
+  const buyLeaner = () => {
+    window.open("https://buy.stripe.com/8wMdUa4yVfBy9Wg9AD", "_blank");
+  };
 
-    const buyStudyholic = async () => {
-        // API call to Stripe
-    };
+  const buyStudent = () => {
+    window.open("https://buy.stripe.com/3csbM28Pb896c4obIK", "_blank");
+  };
 
-    if (plan === "learner") {
-        return (
-            <>
-                <div className="flex flex-col">
-                    <p>Learner</p>
-                    <ul>
-                        <li>Up to 5 flashcard sets per month</li>
-                        <li>Up to 15 flashcards per set</li>
-                        <li>Up to 5 quizzes per month</li>
-                        <li>Up to 15 questions per quiz</li>
-                    </ul>
-                    <button type="button" onClick={buyLeaner}>Confirm Purchase</button>
-                </div>
-            </>
-        );
-    } else if (plan === "student") {
-        return (
-            <>
-                <div className="flex flex-col">
-                    <p>Student</p>
-                    <ul>
-                        <li>Up to 10 flashcard sets per month</li>
-                        <li>Up to 25 flashcards per set</li>
-                        <li>Up to 10 quizzes per month</li>
-                        <li>Up to 20 questions per quiz</li>
-                    </ul>
-                    <button type="button" onClick={buyStudent}>Confirm Purchase</button>
-                </div>
-            </>
-        );
-    } else if (plan === "studyholic") {
-        return (
-            <>
-                <div className="flex flex-col">
-                    <p>Studyholic</p>
-                    <ul>
-                        <li>Up to 20 flashcard sets per month</li>
-                        <li>Up to 30 flashcards per set</li>
-                        <li>Up to 20 quizzes per month</li>
-                        <li>Up to 25 questions per quiz</li>
-                    </ul>
-                    <button type="button" onClick={buyStudyholic}>Become a studyholic</button>
-                </div>
-            </>
-        );
+  const buyStudyholic = () => {
+    window.open("https://buy.stripe.com/3cs6rI0iFahe1pK9AB", "_blank");
+  };
+
+  const planDetails: Record<string, PlanDetails> = {
+    learner: {
+      title: "Learner",
+      features: [
+        "Up to 5 flashcard sets per month",
+        "Up to 15 flashcards per set"
+      ],
+      buyFunction: buyLeaner
+    },
+    student: {
+      title: "Student",
+      features: [
+        "Up to 10 flashcard sets per month",
+        "Up to 25 flashcards per set"
+      ],
+      buyFunction: buyStudent
+    },
+    studyholic: {
+      title: "Studyholic",
+      features: [
+        "Up to 20 flashcard sets per month",
+        "Up to 30 flashcards per set"
+      ],
+      buyFunction: buyStudyholic
     }
+  };
 
-    return <div>Invalid Plan</div>;
+  const currentPlan = planDetails[plan];
+
+  if (!currentPlan) {
+    return (
+      <div className="bg-[#6A7FDB] min-h-screen flex items-center justify-center">
+        <div className="bg-white bg-opacity-20 rounded-lg p-8">
+          <h1 className="text-white text-2xl font-bold">Invalid Plan</h1>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-[#6A7FDB] min-h-screen p-8 flex flex-col items-center justify-center">
+      <div className="bg-white bg-opacity-20 rounded-lg p-8 w-full max-w-md">
+        <h1 className="text-white text-3xl font-bold mb-6 text-center">{currentPlan.title} Plan</h1>
+        <ul className="text-white mb-6">
+          {currentPlan.features.map((feature, index) => (
+            <li key={index} className="mb-2">• {feature}</li>
+          ))}
+        </ul>
+        <button
+          type="button"
+          onClick={currentPlan.buyFunction}
+          className="w-full bg-white text-[#6A7FDB] font-bold py-2 px-4 rounded hover:bg-opacity-90 transition-colors"
+        >
+          Confirm Purchase
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default Plan;

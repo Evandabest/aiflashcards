@@ -24,9 +24,7 @@ const Plans = () => {
           title="Learner" 
           features={[
             "Up to 5 flashcard sets per month",
-            "Up to 15 flashcards per set",
-            "Up to 5 quizzes per month",
-            "Up to 15 questions per quiz"
+            "Up to 15 flashcards per set"
           ]}
           action={goToLearner}
           buttonText="Become a learner"
@@ -35,9 +33,7 @@ const Plans = () => {
           title="Student" 
           features={[
             "Up to 10 flashcard sets per month",
-            "Up to 25 flashcards per set",
-            "Up to 10 quizzes per month",
-            "Up to 20 questions per quiz"
+            "Up to 25 flashcards per set"
           ]}
           action={goToStudent}
           buttonText="Become a student"
@@ -46,9 +42,7 @@ const Plans = () => {
           title="Studyholic" 
           features={[
             "Up to 20 flashcard sets per month",
-            "Up to 30 flashcards per set",
-            "Up to 20 quizzes per month",
-            "Up to 25 questions per quiz"
+            "Up to 30 flashcards per set"
           ]}
           action={goToStudyholic}
           buttonText="Become a studyholic"

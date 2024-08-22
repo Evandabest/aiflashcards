@@ -9,7 +9,8 @@ import {
   IconNewSection,
   IconTerminal2,
 } from "@tabler/icons-react";
-import Image from "next/image";
+import 'boxicons/css/boxicons.min.css';
+
 
 export function FloatingDockDemo() {
   const links = [
@@ -30,7 +31,7 @@ export function FloatingDockDemo() {
     {
       title: "Profile",
       icon: (
-        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <i className='bx bx-sm bx-user' ></i>
       ),
       href: "/profile",
     }

@@ -28,8 +28,8 @@ const Sets = ({data}: {data: any}) => {
             <div>
                 <Card front={data[index].front} back={data[index].back} flip={flip} setFlip = {setFlip} />
                 <div className="flex flex-row justify-center space-x-8 mt-2">
-                <button className="bg-white w-[2rem] h-[1rem] bg-opacity-20 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-30 transition-colors" onClick={prev}>Back</button>
-                <button className="bg-white w-[2rem] h-[1rem] bg-opacity-20 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-30 transition-colors" onClick={next}>Next</button>
+                <button className="bg-white w-[2rem] h-[1rem] bg-opacity-20 rounded-lg p-6 flex flex-col items-center text-white justify-center cursor-pointer hover:bg-opacity-30 transition-colors" onClick={prev}>Back</button>
+                <button className="bg-white w-[2rem] h-[1rem] bg-opacity-20 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-opacity-30 transition-colors text-white" onClick={next}>Next</button>
                 </div>
             </div>
         </>
