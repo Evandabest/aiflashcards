@@ -3,17 +3,17 @@ import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-interface profileInfo {
+interface ProfileInfo {
     pfp: string | null;
-    username: string | null;
+    name: string | null;
 }
 
 const Edit = () => {
     const supabase = createClient()
     const router = useRouter()
-    const [data, setData] = useState<profileInfo>({
+    const [data, setData] = useState<ProfileInfo>({
         pfp: "",
-        username: "",
+        name: "",
     })
     const [newPfp, setNewPfp] = useState<File | undefined>(undefined)
     const [id, setId] = useState<string | undefined>(undefined)
@@ -59,7 +59,7 @@ const Edit = () => {
         return publicUrl
     }
 
-    const edit = async (e: any) => {
+    const edit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         let updatedProfile = { ...data }
         if (newPfp) {
@@ -75,11 +75,10 @@ const Edit = () => {
                 return;
             }
             updatedProfile.pfp = publicUrl
-        
         }
         const { data: updatedData, error: updateError } = await supabase.from('profiles').update({
             pfp: updatedProfile.pfp, 
-            username: updatedProfile.username
+            name: updatedProfile.name
         }).eq('id', id);
         
         if (updateError) {
@@ -89,34 +88,41 @@ const Edit = () => {
         router.push('/profile')
     }
 
-        
-
-
     const changeInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
         setData({
             ...data,
             [e.target.name]: e.target.value
         })
     }
-    
 
     return (
-        <>   
-            <div className="flex flex-col items-center justify-center">
-                <form className="flex flex-col shadow-md bg-white rounded-md shadow-black p-4 w-80 m-auto items-center justify-center mt-12">
-                {newPfp ? (
-                    <img className="rounded-full h-24 w-24 mb-8" src={URL.createObjectURL(newPfp)} alt="Profile Picture" onError={(e) => e.currentTarget.src = 'default-placeholder.png'} />
+        <div className="bg-[#6A7FDB] min-h-screen p-8 flex flex-col items-center justify-center">
+            <div className="bg-white bg-opacity-20 rounded-lg p-8 w-full max-w-md">
+                <h1 className="text-white text-3xl font-bold mb-6 text-center">Edit Profile</h1>
+                <form onSubmit={edit} className="flex flex-col items-center">
+                    {newPfp ? (
+                        <img className="rounded-full h-32 w-32 mb-8 border-4 border-white" src={URL.createObjectURL(newPfp)} alt="Profile Picture" onError={(e) => e.currentTarget.src = 'default-placeholder.png'} />
                     ) : (
-                    <img className="rounded-full h-24 w-24 mb-8" src={data.pfp || 'default-placeholder.png'} alt="Profile Picture" onError={(e) => e.currentTarget.src = 'https://bjgvfehipzlfxmpzwljg.supabase.co/storage/v1/object/public/pfp/basic-default-pfp-pxi77qv5o0zuz8j3.jpg?t=2024-08-14T21%3A11%3A46.418Z'} />
+                        <img className="rounded-full h-32 w-32 mb-8 border-4 border-white" src={data.pfp || 'default-placeholder.png'} alt="Profile Picture" onError={(e) => e.currentTarget.src = 'https://bjgvfehipzlfxmpzwljg.supabase.co/storage/v1/object/public/pfp/basic-default-pfp-pxi77qv5o0zuz8j3.jpg?t=2024-08-14T21%3A11%3A46.418Z'} />
                     )}
-                    <p className="my-2">Select new profile picture</p>
-                    <input type="file" onChange={newFile} name="file" />
-                    <p className="my-2">Display name:</p>
-                    <input name="username" className="mb-8" defaultValue={data.username ?? ""} onChange={changeInfo} value={data.username ?? ""} />
-                    <button type="submit" onClick={(e) => edit(e)}>Confirm changes </button>
+                    <label className="text-white mb-2">Select new profile picture</label>
+                    <input className="mb-4 text-white" type="file" onChange={newFile} name="file" />
+                    <label className="text-white mb-2">Display name:</label>
+                    <input 
+                        name="name" 
+                        className="mb-6 p-2 rounded bg-white bg-opacity-50 text-white placeholder-gray-200 w-full"
+                        value={data.name ?? ""} 
+                        onChange={changeInfo}
+                    />
+                    <button 
+                        type="submit"
+                        className="bg-white text-[#6A7FDB] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
+                    >
+                        Confirm changes
+                    </button>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
 

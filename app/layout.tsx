@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { FloatingDockDemo } from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`bg-[#6A7FDB] flex flex-col min-h-screen ${inter.className}`}>
+        <main className="flex-grow overflow-auto pb-16">
+          {children}
+        </main>
+        <div className="fixed bottom-0 left-0 right-0">
+          <FloatingDockDemo />
+        </div>
+      </body>
     </html>
   );
 }

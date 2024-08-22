@@ -13,7 +13,7 @@ const FlashcardsPage = async ({ params: {id} } : {params: {id: string}}) => {
     return (
         <>
             <div>
-                <h1>{data.name}</h1>
+                <h1 className="text-white text-3xl font-bold mb-8 text-center">{data.name}</h1>
                 {<Sets data = {data.cards}></Sets>
                 }
                 

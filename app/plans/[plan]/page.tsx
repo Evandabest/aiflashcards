@@ -1,22 +1,20 @@
+"use client"
 import { createClient } from "@/utils/supabase/server";
 
-
-const Plan = ({plan}:{plan: any}) => {
-    console.log(plan)
-    
+const Plan = ({ params: { plan } }: { params: { plan: any } }) => {
+    console.log(plan);
 
     const buyLeaner = async () => {
-        //api call to stripe
-    }
+        // API call to Stripe
+    };
 
     const buyStudent = async () => {
-        //api call to stripe
-    }
+        // API call to Stripe
+    };
 
     const buyStudyholic = async () => {
-        //api call to stripe
-    }
-
+        // API call to Stripe
+    };
 
     if (plan === "learner") {
         return (
@@ -29,10 +27,10 @@ const Plan = ({plan}:{plan: any}) => {
                         <li>Up to 5 quizzes per month</li>
                         <li>Up to 15 questions per quiz</li>
                     </ul>
-                    <button formAction={buyLeaner}>Confirm Purchase</button>
+                    <button type="button" onClick={buyLeaner}>Confirm Purchase</button>
                 </div>
             </>
-        )
+        );
     } else if (plan === "student") {
         return (
             <>
@@ -44,10 +42,10 @@ const Plan = ({plan}:{plan: any}) => {
                         <li>Up to 10 quizzes per month</li>
                         <li>Up to 20 questions per quiz</li>
                     </ul>
-                    <button formAction={buyStudent}>Confirm Purchase</button>
+                    <button type="button" onClick={buyStudent}>Confirm Purchase</button>
                 </div>
             </>
-        )
+        );
     } else if (plan === "studyholic") {
         return (
             <>
@@ -59,12 +57,13 @@ const Plan = ({plan}:{plan: any}) => {
                         <li>Up to 20 quizzes per month</li>
                         <li>Up to 25 questions per quiz</li>
                     </ul>
-                    <button formAction={buyStudyholic}>Become a studyholic</button>
+                    <button type="button" onClick={buyStudyholic}>Become a studyholic</button>
                 </div>
             </>
-        )
+        );
     }
 
-}
+    return <div>Invalid Plan</div>;
+};
 
 export default Plan;
