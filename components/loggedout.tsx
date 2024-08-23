@@ -17,14 +17,14 @@ export function FloatingDockDemo1() {
     {
       title: "Home",
       icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <i className='bx bx-home bx-sm' style={{ color: '#ffffff' }}></i>
       ),
       href: "/login",
     },
     {
       title: "Add",
       icon: (
-        <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <i className='bx bx-sm bx-plus' style={{ color: '#ffffff' }} ></i>
       ),
       href: "/login",
     },
