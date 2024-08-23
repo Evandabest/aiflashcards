@@ -22,7 +22,7 @@ const Plans = () => {
         <PlanCard 
           title="Free Tier" 
           price="$0"
-          features={["1 free flashcard set", "1 free quiz"]} 
+          features={["1 free flashcard set", "Up to 10 flashcards per set"]} 
         />
         <PlanCard
           title="Learner"

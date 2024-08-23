@@ -22,6 +22,5 @@ const FlashcardsPage = async ({ params: {id} } : {params: {id: string}}) => {
     )
 
 }
-
 export default FlashcardsPage
 

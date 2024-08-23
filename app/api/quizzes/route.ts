@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { createClient } from "@/utils/supabase/server"
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export default async function POST (req : Request) {  
+export async function POST (req : Request) {  
     const {id, datas, cards, nums } : {id: string, datas: any, cards: any, nums: number} = await req.json()
     const apiKey = process.env.NEXT_GOOGLE_GEMINI_KEY!;
     const supabase = createClient()
