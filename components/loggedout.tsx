@@ -12,28 +12,28 @@ import {
 import 'boxicons/css/boxicons.min.css';
 
 
-export function FloatingDockDemo() {
+export function FloatingDockDemo1() {
   const links = [
     {
       title: "Home",
       icon: (
-        <i className='bx bx-home bx-sm' style={{ color: '#ffffff' }}></i>
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "/home",
+      href: "/login",
     },
     {
       title: "Add",
       icon: (
-        <i className='bx bx-sm bx-plus' style={{ color: '#ffffff' }} ></i>
+        <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "/add",
+      href: "/login",
     },
     {
       title: "Profile",
       icon: (
         <i className='bx bx-sm bx-user' ></i>
       ),
-      href: "/profile",
+      href: "/login",
     }
   ];
   return (

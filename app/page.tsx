@@ -14,15 +14,6 @@ export default async function Home() {
   return (
     <div className="bg-[#6A7FDB] min-h-screen">
       {/* Header */}
-      <header className="bg-white bg-opacity-10 p-4">
-        <nav className="container mx-auto flex justify-between items-center">
-          <h1 className="text-white text-2xl font-bold">AI Flashcards</h1>
-          <div>
-            <Link href="/login" className="text-white hover:text-gray-200 mr-4">Login</Link>
-            <Link href="/signup" className="bg-white text-[#6A7FDB] px-4 py-2 rounded hover:bg-opacity-90 transition-colors">Sign Up</Link>
-          </div>
-        </nav>
-      </header>
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
@@ -62,7 +53,7 @@ export default async function Home() {
       {/* Footer */}
       <footer className="bg-white bg-opacity-10 py-8">
         <div className="container mx-auto px-4 text-center text-white">
-          <p>&copy; 2024 AI Flashcards. All rights reserved.</p>
+          <p>&copy; 2024 QuizCraftAI. All rights reserved.</p>
         </div>
       </footer>
     </div>
