@@ -17,7 +17,7 @@ import { useState, useEffect } from "react"
 
 const Add = () => {
   const supabase = createClient()
-  const [data, setData] = useState<any>()
+  const [userData, setUserData] = useState<any>(null)
   const [title, setTitle] = useState('')
   const [notes, setNotes] = useState('')
   const router = useRouter()
@@ -34,12 +34,12 @@ const Add = () => {
         console.error('Error fetching user id')
         return
       }
-      const { data, error: error2 } = await supabase.from('profiles').select('*').eq('id', id)
+      const { data, error: error2 } = await supabase.from('profiles').select('*').eq('id', id).single()
       if (error2) {
-        console.error('Error fetching posts:', error2)
+        console.error('Error fetching profile:', error2)
         return
       }
-      setData(data)
+      setUserData(data)
     }
     getData()
   }, [supabase])
@@ -53,7 +53,7 @@ const Add = () => {
     const res = await fetch('/api/flashcards', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ notes, datas: data[0], title })
+      body: JSON.stringify({ notes, datas: userData, title })
     })
 
     if (res.ok) {
@@ -68,6 +68,22 @@ const Add = () => {
     const { name, value } = event.target
     if (name === "title") setTitle(value)
     else if (name === "notes") setNotes(value)
+  }
+
+  const canGenerateCards = () => {
+    if (!userData) return false
+    switch (userData.plan) {
+      case "free":
+        return userData.setLimit > 0
+      case "tier-1":
+        return userData.setLimit > 0
+      case "tier-2":
+        return userData.setLimit > 0
+      case "tier-3":
+        return userData.setLimit > 0
+      default:
+        return false
+    }
   }
 
   return (
@@ -93,7 +109,7 @@ const Add = () => {
             className="w-full p-2 rounded bg-white bg-opacity-50 text-white placeholder-gray-200 h-40"
           />
         </div>
-        {data && data[0]?.plan === "free" && data[0]?.free_cards === 1 ? (
+        {canGenerateCards() ? (
           <button
             onClick={generate}
             type="submit"
@@ -108,7 +124,7 @@ const Add = () => {
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Ran out of free cards?</AlertDialogTitle>
+                <AlertDialogTitle>Ran out of cards?</AlertDialogTitle>
                 <AlertDialogDescription>
                   Check out our affordable plans to get more cards and quizzes!
                 </AlertDialogDescription>

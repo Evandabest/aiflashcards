@@ -70,6 +70,50 @@ const EditFlashcardsPage = ({ params: { id } }: { params: { id: string } }) => {
     return <div className="text-white text-center">Loading...</div>
   }
 
+  const deleteFlashcardSet = async () => {
+    if (window.confirm("Are you sure you want to delete this flashcard set? This action cannot be undone.")) {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) {
+          throw new Error('No user found');
+        }
+  
+        // First, update the user's profile
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('flashcards')
+          .eq('id', user.id)
+          .single();
+  
+        if (profileError) throw profileError;
+  
+        const newFlashcards = profile.flashcards.filter((flashcardId: string) => flashcardId !== id);
+        
+        const { error: updateError } = await supabase
+          .from('profiles')
+          .update({ flashcards: newFlashcards })
+          .eq('id', user.id);
+  
+        if (updateError) throw updateError;
+  
+        // Then, delete the flashcard set
+        const { error: deleteError } = await supabase
+          .from('flashcards')
+          .delete()
+          .eq('id', id);
+  
+        if (deleteError) throw deleteError;
+  
+        // If we get here, both operations were successful
+        router.push('/home');
+      } catch (error) {
+        console.error('Error deleting flashcard set:', error);
+        // You might want to show an error message to the user here
+      }
+    }
+  };
+
+
   return (
     <div className="bg-[#6A7FDB] min-h-screen p-8">
       <div className="max-w-3xl mx-auto">
@@ -120,22 +164,31 @@ const EditFlashcardsPage = ({ params: { id } }: { params: { id: string } }) => {
             </button>
           </div>
         ))}
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-8">
           <button
             onClick={addCard}
             className="bg-white text-[#6A7FDB] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
           >
             Add Card
           </button>
-          <button
-            onClick={saveChanges}
-            className="bg-green-500 text-white font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
-          >
-            Save Changes
-          </button>
+          <div>
+            <button
+              onClick={saveChanges}
+              className="bg-green-500 text-white font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors mr-4"
+            >
+              Save Changes
+            </button>
+            <button
+              onClick={deleteFlashcardSet}
+              className="bg-red-500 text-white font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
+            >
+              Delete Set
+            </button>
+          </div>
         </div>
       </div>
     </div>
+
   )
 }
 

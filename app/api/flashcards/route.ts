@@ -13,16 +13,16 @@ export async function POST (req : Request) {
     let prompt = ""
 
     if (datas.plan == "free" && datas.setLimit > 0) {
-        prompt +=  `Make 10 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>} in a JSON array. If there isnt any index, return an empty array`
+        prompt +=  `Make no more than 10 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>} in a JSON array. If there isnt any index, return an empty array`
     }
     else if (datas.plan == "tier-1" && datas.setLimit > 0) {
-        prompt +=  `Make 15 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>} in a JSON array. If there isnt any index, return an empty array`
+        prompt +=  `Make no more than 15 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>} in a JSON array. If there isnt any index, return an empty array`
     }
     else if (datas.plan == "tier-2" && datas.setLimit > 0) {
-        prompt +=  `Make 20 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>} in a JSON array. If there isnt any index, return an empty array`
+        prompt +=  `Make no more than 20 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>} in a JSON array. If there isnt any index, return an empty array`
     }
     else if (datas.plan == "tier-3" && datas.setLimit > 0) {
-        prompt +=  `Make 30 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>} in a JSON array. If there isnt any index, return an empty array`
+        prompt +=  `Make no more than 30 flashcards based on the following notes, ${notes} return each of the flashcards in the following format: { front: <term>, back: <definition>} in a JSON array. If there isnt any index, return an empty array`
     }
 
     try {
