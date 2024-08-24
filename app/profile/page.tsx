@@ -6,36 +6,34 @@ const Profile = async () => {
   const { data: { user } } = await supabase.auth.getUser();
   const id = user?.id;
   const { data, error } = await supabase.from('profiles').select('*').eq('id', id)
-  
   if (error) {
     console.error('Error fetching profile:', error);
     return null; // Return null or an error component instead of undefined
   }
-
   let posts: any = []
   for (let i = 0; i < data.length; i++) {
     posts = [...posts, data[i].posts]
   }
-
   const goToEdit = async (formData: FormData) => {
     "use server"
     redirect("/profile/edit")
   }
-
   const logout = async () => {
     "use server"
     const supabase = createClient()
     await supabase.auth.signOut()
     redirect("/login")
   }
-
+  const upgradePlan = async () => {
+    "use server"
+    redirect("/plans")
+  }
   const subMap: { [key: string]: string } = {
     "free": "Free",
     "tier-1": "Learner",
     "tier-2": "Student",
     "tier-3": "Studyholic"
   }
-
   return (
     <div className="bg-[#6A7FDB] min-h-screen p-8 flex flex-col items-center justify-center">
       <div className="bg-white bg-opacity-20 rounded-lg p-8 w-full max-w-md">
@@ -54,6 +52,12 @@ const Profile = async () => {
               className="bg-white text-[#6A7FDB] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
             >
               Edit Profile
+            </button>
+            <button
+              formAction={upgradePlan}
+              className="bg-green-500 text-white font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
+            >
+              Upgrade Plan
             </button>
             <button
               formAction={logout}
