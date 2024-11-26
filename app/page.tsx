@@ -13,7 +13,7 @@ export default async function Home() {
   } 
   checkUser()
   return (
-    <div className="bg-[#6A7FDB] min-h-screen">
+    <div className="bg-[#3d2222] min-h-screen">
       {/* Header */}
 
       {/* Hero Section */}
@@ -21,7 +21,7 @@ export default async function Home() {
         <h2 className="text-white text-5xl font-bold mb-6">Supercharge Your Learning with AI</h2>
         <p className="text-white text-xl mb-8">Create personalized flashcards and quizzes instantly with our advanced AI technology.</p>
         <div className='flex flex-col mx-72 gap-y-4'>
-          <Link href="/login" className="bg-white text-[#6A7FDB] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Get Started For Free</Link>
+          <Link href="/login" className="bg-white text-[#3d2222] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Get Started For Free</Link>
           <Link href="https://x.com/thequizcraftai?s=21" className="text-white px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors bg-blue-700">Twitter </Link>
         </div>
       </section>
@@ -51,7 +51,7 @@ export default async function Home() {
       <section className="container mx-auto px-4 py-20 text-center">
         <h3 className="text-white text-3xl font-bold mb-6">Ready to Elevate Your Study Game?</h3>
         {users == false ? <Link href="/home" className="bg-white text-[#6A7FDB] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">View Our Plans</Link> :
-          <Link href="/home" className="bg-white text-[#6A7FDB] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Sign up</Link>}
+          <Link href="/home" className="bg-white text-[#3d2222] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Sign up</Link>}
       </section>
       
 

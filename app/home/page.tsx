@@ -54,7 +54,7 @@ const Home = () => {
 
 
     return (
-        <div className="bg-[#6A7FDB] min-h-screen p-8">
+        <div className="bg-[#3d2222] min-h-screen p-8">
       <h1 className="text-white text-3xl font-bold mb-8 text-center">Sets</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div 
@@ -70,7 +70,7 @@ const Home = () => {
             onClick={() => goToSet(flashcard.id)}
           >
             <h2 className="text-white text-lg font-medium mb-2">{flashcard.name}</h2>
-            <button className="text-white border border-white px-3 py-1 rounded hover:bg-white hover:text-[#6A7FDB] transition-colors">
+            <button className="text-white border border-white px-3 py-1 rounded hover:bg-white hover:text-[#3d2222] transition-colors">
               View
             </button>
           </div>

@@ -36,14 +36,14 @@ export default async function RootLayout({
       <head>
         <title>QuizCraft</title>
       </head>
-      <body className={`bg-[#6A7FDB] flex flex-col min-h-screen pt-16 ${inter.className}`}>
+      <body className={`bg-[#3d2222] flex flex-col min-h-screen pt-16 ${inter.className}`}>
         <header className="bg-white bg-opacity-10 p-4 fixed top-0 left-0 right-0 z-50">
           <nav className="container mx-auto flex justify-between items-center">
           {user ? (
             <>
             <Link href="/home" className="text-white text-2xl font-bold">QuizCraftAI</Link>
               <form action={logout}>
-                <button type="submit" className="bg-white text-[#6A7FDB] px-4 py-2 rounded hover:bg-opacity-90 transition-colors">Logout</button>
+                <button type="submit" className="bg-white text-[#3d2222] px-4 py-2 rounded hover:bg-opacity-90 transition-colors">Logout</button>
               </form>
             </>
             ) : (
@@ -51,7 +51,7 @@ export default async function RootLayout({
                 <Link href="/" className="text-white text-2xl font-bold">QuizCraftAI</Link>
               <div>
                 <Link href="/login" className="text-white hover:text-gray-200 mr-4">Login</Link>
-                <Link href="/login" className="bg-white text-[#6A7FDB] px-4 py-2 rounded hover:bg-opacity-90 transition-colors">Sign Up</Link>
+                <Link href="/login" className="bg-white text-[#3d2222] px-4 py-2 rounded hover:bg-opacity-90 transition-colors">Sign Up</Link>
               </div>
               </>
             )}

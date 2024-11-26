@@ -96,7 +96,7 @@ const Edit = () => {
     }
 
     return (
-        <div className="bg-[#6A7FDB] min-h-screen p-8 flex flex-col items-center justify-center">
+        <div className="bg-[#3d2222] min-h-screen p-8 flex flex-col items-center justify-center">
             <div className="bg-white bg-opacity-20 rounded-lg p-8 w-full max-w-md">
                 <h1 className="text-white text-3xl font-bold mb-6 text-center">Edit Profile</h1>
                 <form onSubmit={edit} className="flex flex-col items-center">
@@ -116,7 +116,7 @@ const Edit = () => {
                     />
                     <button 
                         type="submit"
-                        className="bg-white text-[#6A7FDB] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
+                        className="bg-white text-[#3d2222] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
                     >
                         Confirm changes
                     </button>

@@ -35,7 +35,7 @@ const Profile = async () => {
     "tier-3": "Studyholic"
   }
   return (
-    <div className="bg-[#6A7FDB] min-h-screen p-8 flex flex-col items-center justify-center">
+    <div className="bg-[#3d2222] min-h-screen p-8 flex flex-col items-center justify-center">
       <div className="bg-white bg-opacity-20 rounded-lg p-8 w-full max-w-md">
         <h1 className="text-white text-3xl font-bold mb-6 text-center">Profile</h1>
         <form className="flex flex-col items-center">
@@ -51,7 +51,7 @@ const Profile = async () => {
           <div className="flex space-x-4 mb-4">
             <button
               formAction={goToEdit}
-              className="bg-white text-[#6A7FDB] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
+              className="bg-white text-[#3d2222] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
             >
               Edit Profile
             </button>

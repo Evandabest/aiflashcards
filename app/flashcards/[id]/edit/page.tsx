@@ -115,7 +115,7 @@ const EditFlashcardsPage = ({ params: { id } }: { params: { id: string } }) => {
 
 
   return (
-    <div className="bg-[#6A7FDB] min-h-screen p-8">
+    <div className="bg-[#3d2222] min-h-screen p-8">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-white text-3xl font-bold mb-8 text-center">Edit Flashcard Set</h1>
         <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-8">
@@ -167,7 +167,7 @@ const EditFlashcardsPage = ({ params: { id } }: { params: { id: string } }) => {
         <div className="flex justify-between mt-8">
           <button
             onClick={addCard}
-            className="bg-white text-[#6A7FDB] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
+            className="bg-white text-[#3d2222] font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
           >
             Add Card
           </button>

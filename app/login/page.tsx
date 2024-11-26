@@ -7,7 +7,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
 
   return (
-    <div className="bg-[#6A7FDB] min-h-screen p-8 flex items-center justify-center">
+    <div className="bg-[#3d2222] min-h-screen p-8 flex items-center justify-center">
       <div className="bg-white bg-opacity-20 rounded-lg p-8 w-full max-w-md">
         <h1 className="text-white text-3xl font-bold mb-8 text-center">Login or Sign Up</h1>
         <form className="space-y-6">
@@ -42,7 +42,7 @@ export default function LoginPage() {
           <div className="flex space-x-4">
             <button
               formAction={login}
-              className="flex-1 bg-white text-[#6A7FDB] font-bold py-2 px-4 rounded hover:bg-opacity-90 transition-colors"
+              className="flex-1 bg-white text-[#3d2222] font-bold py-2 px-4 rounded hover:bg-opacity-90 transition-colors"
             >
               Log in
             </button>
