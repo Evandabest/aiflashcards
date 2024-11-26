@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/server';
+import Sets from '@/components/set';
 
 export default async function Home() {
   const supabase = createClient();
@@ -52,6 +53,7 @@ export default async function Home() {
         {users == false ? <Link href="/home" className="bg-white text-[#6A7FDB] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">View Our Plans</Link> :
           <Link href="/home" className="bg-white text-[#6A7FDB] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Sign up</Link>}
       </section>
+      
 
       {/* Footer 
       <footer className="bg-white bg-opacity-10 py-8">
@@ -60,6 +62,10 @@ export default async function Home() {
         </div>
       </footer>
       */}
+      <section>
+        <p className="text-white text-3xl font-bold text-center">A quick look at the AI-generated Flashcards</p>
+        <FlashcardsDemo />
+      </section>
     </div>
   );
 }
@@ -71,4 +77,24 @@ function FeatureCard({ title, description }: { title: string; description: strin
       <p className="text-white">{description}</p>
     </div>
   );
+}
+
+
+const FlashcardsDemo = async () => {
+  const supabase = createClient()
+  const { data, error } = await supabase.from('flashcards').select('*').eq('id', "e2a5dee6-414c-4ccc-aa37-d02197bbb9ff").single()
+  
+  if (error) {
+    console.error('Error fetching flashcards:', error)
+    return <div>Error loading flashcards</div>
+  }
+
+  return (
+    <div className="container mx-auto px-4">
+      <div className="relative mb-8 mt-4">
+        <h1 className="text-white text-3xl font-bold text-center">{data.name}</h1>
+      </div>
+      {<Sets data={data.cards} />}
+    </div>
+  )
 }

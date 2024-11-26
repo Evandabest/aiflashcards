@@ -69,8 +69,8 @@ export default async function RootLayout({
         </div>
         )}
       </body>
-      <footer className="bg-white bg-opacity-10 p-4 fixed bottom-0 left-0 right-0 z-50">
-        <div className="container mx-auto text-center text-white">
+      <footer className="bg-white bg-opacity-10 p-4 bottom-0 left-0 right-0 z-50">
+        <div className="container mx-auto text-right w-full text-white">
           <p>&copy; 2022 QuizCraftAI</p>
           <p>Contact email: hello@quizcraftai.com</p>
         </div>
