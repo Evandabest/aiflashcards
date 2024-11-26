@@ -53,12 +53,13 @@ export default async function Home() {
           <Link href="/home" className="bg-white text-[#6A7FDB] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Sign up</Link>}
       </section>
 
-      {/* Footer */}
+      {/* Footer 
       <footer className="bg-white bg-opacity-10 py-8">
         <div className="container mx-auto px-4 text-center text-white">
           <p>&copy; 2024 QuizCraftAI. All rights reserved.</p>
         </div>
       </footer>
+      */}
     </div>
   );
 }

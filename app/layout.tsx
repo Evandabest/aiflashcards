@@ -5,7 +5,7 @@ import { FloatingDockDemo } from "@/components/navbar";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { FloatingDockDemo1 } from "@/components/loggedout";
-
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +32,7 @@ export default async function RootLayout({
   } 
   return (
     <html lang="en">
+      <Analytics/>
       <head>
         <title>QuizCraft</title>
       </head>
@@ -68,6 +69,12 @@ export default async function RootLayout({
         </div>
         )}
       </body>
+      <footer className="bg-white bg-opacity-10 p-4 fixed bottom-0 left-0 right-0 z-50">
+        <div className="container mx-auto text-center text-white">
+          <p>&copy; 2022 QuizCraftAI</p>
+          <p>Contact email: hello@quizcraftai.com</p>
+        </div>
+      </footer>
     </html>
   );
 }
