@@ -53,12 +53,14 @@ const Profile = async () => {
             >
               Edit Profile
             </button>
-            <button
-              formAction={upgradePlan}
-              className="bg-green-500 text-white font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
-            >
-              Upgrade Plan
-            </button>
+            {
+            //  <button
+            //  
+            //  className="bg-green-500 text-white font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
+            //>
+            //  Upgrade Plan
+            //</button>
+}
             <button
               formAction={logout}
               className="bg-red-500 text-white font-bold py-2 px-6 rounded hover:bg-opacity-90 transition-colors"
