@@ -82,9 +82,16 @@ const Plan = ({ params: { plan } }: { params: { plan: string } }) => {
             <li key={index} className="mb-2">• {feature}</li>
           ))}
         </ul>
-        <button
+        {/*<button
           type="button"
           onClick={currentPlan.buyFunction}
+          className="w-full bg-white text-[#6A7FDB] font-bold py-2 px-4 rounded hover:bg-opacity-90 transition-colors"
+        >
+          Confirm Purchase
+        </button>
+  */}
+        <button
+          type="button"
           className="w-full bg-white text-[#6A7FDB] font-bold py-2 px-4 rounded hover:bg-opacity-90 transition-colors"
         >
           Confirm Purchase
