@@ -45,7 +45,9 @@ const Profile = async () => {
             alt="Profile Picture"
           />
           <p className="text-white text-xl mb-2">Display name: {data[0].name}</p>
-          <p className="text-white text-lg mb-6">Subscription: {subMap[data[0].plan]}</p>
+          {
+          //<p className="text-white text-lg mb-6">Subscription: {subMap[data[0].plan]}</p>
+}
           <div className="flex space-x-4 mb-4">
             <button
               formAction={goToEdit}
