@@ -20,6 +20,7 @@ export default async function Home() {
         <h2 className="text-white text-5xl font-bold mb-6">Supercharge Your Learning with AI</h2>
         <p className="text-white text-xl mb-8">Create personalized flashcards and quizzes instantly with our advanced AI technology.</p>
         <Link href="/login" className="bg-white text-[#6A7FDB] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Get Started For Free</Link>
+        <Link href="https://x.com/thequizcraftai?s=21" className="text-white px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Learn More</Link>
       </section>
 
       {/* Features Section */}
