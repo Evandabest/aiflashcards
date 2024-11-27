@@ -21,8 +21,9 @@ export default async function Home() {
         <h2 className="text-white text-5xl font-bold mb-6">Supercharge Your Learning with AI</h2>
         <p className="text-white text-xl mb-8">Create personalized flashcards and quizzes instantly with our advanced AI technology.</p>
         <div className='flex flex-col mx-72 gap-y-4'>
-          <Link href="/login" className="bg-white text-[#3d2222] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Get Started For Free</Link>
-          <Link href="https://x.com/thequizcraftai?s=21" className="text-white px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors bg-blue-700">Twitter </Link>
+          {users? <Link href="/home" className="bg-white text-[#3d2222] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">View Our Plans</Link> :
+          <Link href="/login" className="bg-white text-[#3d2222] px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors">Get Started For Free</Link>}
+          
         </div>
       </section>
 

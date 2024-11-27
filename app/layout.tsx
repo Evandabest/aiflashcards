@@ -31,6 +31,7 @@ export default async function RootLayout({
     await supabase.auth.signOut()
   } 
   return (
+    <>
     <html lang="en">
       <Analytics/>
       <head>
@@ -42,16 +43,20 @@ export default async function RootLayout({
           {user ? (
             <>
             <Link href="/home" className="text-white text-2xl font-bold">QuizCraftAI</Link>
+            <div className="flex flex-row justify-center items-center gap-3">
               <form action={logout}>
                 <button type="submit" className="bg-white text-[#3d2222] px-4 py-2 rounded hover:bg-opacity-90 transition-colors">Logout</button>
               </form>
+              <Link href="https://x.com/thequizcraftai?s=21" className="text-white px-3 py-1 rounded text-xl font-bold hover:bg-opacity-90 transition-colors bg-blue-700">Twitter </Link>
+              </div>
             </>
             ) : (
               <> 
                 <Link href="/" className="text-white text-2xl font-bold">QuizCraftAI</Link>
-              <div>
+                <div className="flex flex-row justify-center items-center gap-3">
                 <Link href="/login" className="text-white hover:text-gray-200 mr-4">Login</Link>
                 <Link href="/login" className="bg-white text-[#3d2222] px-4 py-2 rounded hover:bg-opacity-90 transition-colors">Sign Up</Link>
+                <Link href="https://x.com/thequizcraftai?s=21" className="text-white px-8 py-3 rounded-lg text-xl font-bold hover:bg-opacity-90 transition-colors bg-blue-700">Twitter </Link>
               </div>
               </>
             )}
@@ -68,13 +73,15 @@ export default async function RootLayout({
           <FloatingDockDemo1 />
         </div>
         )}
-      </body>
-      <footer className="bg-white bg-opacity-10 p-4 bottom-0 left-0 right-0 z-50">
+         <footer className="bg-white bg-opacity-10 p-4 bottom-0 left-0 right-0 z-50">
         <div className="container mx-auto text-right w-full text-white">
           <p>&copy; 2022 QuizCraftAI</p>
           <p>Contact email: hello@quizcraftai.com</p>
         </div>
       </footer>
+      </body>
     </html>
+  
+    </>
   );
 }
